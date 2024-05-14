@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="parent">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="passwd" Type="varchar" MaxLength="50" />
+    <Property Name="confirmpasswd" Type="varchar" MaxLength="50" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" />
+    <Property Name="middlename" Type="varchar" MaxLength="50" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" />
+    <Property Name="addrss" Type="varchar" MaxLength="70" />
+    <Property Name="phonenum" Type="varchar" MaxLength="70" />
+    <Property Name="balance" Type="int" Nullable="false" />
+    <Property Name="date_created" Type="datetime" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="passwd" Type="varchar" MaxLength="50" />
+    <Property Name="confirmpasswd" Type="varchar" MaxLength="50" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" />
+    <Property Name="middlename" Type="varchar" MaxLength="50" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" />
+    <Property Name="addrss" Type="varchar" MaxLength="100" />
+    <Property Name="phonenum" Type="varchar" MaxLength="50" />
+    <Property Name="balance" Type="int" Nullable="false" />
+    <Property Name="date_created" Type="datetime" />
+    <Property Name="parentid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__student__parenti__0D7A0286">
+    <End Role="parent" Type="Self.parent" Multiplicity="0..1" />
+    <End Role="student" Type="Self.student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="parent">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="parentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AMSModelStoreContainer">
+    <EntitySet Name="parent" EntityType="Self.parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__student__parenti__0D7A0286" Association="Self.FK__student__parenti__0D7A0286">
+      <End Role="parent" EntitySet="parent" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

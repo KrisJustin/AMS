@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="AMSEntities-Web.config Connection String" description="AMSEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data Server=sql.bsite.net\MSSQL2016;Database=allowancesystem_;User Id=allowancesystem; password=admin;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HP-PROBOOK\\Documents\\Visual\ Studio\ 2015\\Projects\\AMS-v1\.3\\AMS-v1\.3\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AMSEntities']/@connectionString" />
+  </parameter>
+</parameters>

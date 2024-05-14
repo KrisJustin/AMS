@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="parent">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="passwd" Type="varchar" MaxLength="50" />
+          <Property Name="confirmpasswd" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="addrss" Type="varchar" MaxLength="70" />
+          <Property Name="phonenum" Type="varchar" MaxLength="70" />
+          <Property Name="balance" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="passwd" Type="varchar" MaxLength="50" />
+          <Property Name="confirmpasswd" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="addrss" Type="varchar" MaxLength="100" />
+          <Property Name="phonenum" Type="varchar" MaxLength="50" />
+          <Property Name="balance" Type="int" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="parentid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__student__parenti__0D7A0286">
+          <End Role="parent" Type="Self.parent" Multiplicity="0..1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parent">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="parentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AMSModelStoreContainer">
+          <EntitySet Name="parent" EntityType="Self.parent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__student__parenti__0D7A0286" Association="Self.FK__student__parenti__0D7A0286">
+            <End Role="parent" EntitySet="parent" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="parent">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="confirmpasswd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addrss" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="phonenum" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="balance" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="student" Relationship="Self.FK__student__parenti__0D7A0286" FromRole="parent" ToRole="student" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="confirmpasswd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addrss" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phonenum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="balance" Type="Int32" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="parentid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="parent" Relationship="Self.FK__student__parenti__0D7A0286" FromRole="student" ToRole="parent" />
+        </EntityType>
+        <Association Name="FK__student__parenti__0D7A0286">
+          <End Role="parent" Type="Self.parent" Multiplicity="0..1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parent">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="parentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="parent" EntityType="Self.parent" />
+          <EntitySet Name="student" EntityType="Self.student" />
+          <AssociationSet Name="FK__student__parenti__0D7A0286" Association="Self.FK__student__parenti__0D7A0286">
+            <End Role="parent" EntitySet="parent" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AMSModelStoreContainer" CdmEntityContainer="AMSEntities">
+          <EntitySetMapping Name="parent">
+            <EntityTypeMapping TypeName="AMSModel.parent">
+              <MappingFragment StoreEntitySet="parent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="passwd" ColumnName="passwd" />
+                <ScalarProperty Name="confirmpasswd" ColumnName="confirmpasswd" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="addrss" ColumnName="addrss" />
+                <ScalarProperty Name="phonenum" ColumnName="phonenum" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student">
+            <EntityTypeMapping TypeName="AMSModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="passwd" ColumnName="passwd" />
+                <ScalarProperty Name="confirmpasswd" ColumnName="confirmpasswd" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="addrss" ColumnName="addrss" />
+                <ScalarProperty Name="phonenum" ColumnName="phonenum" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
